@@ -14,10 +14,10 @@
 # Variables																	   #
 # **************************************************************************** #
 
-NAME	= megaphone
+NAME	= fixed
 SRCS	= $(shell echo *.cpp)
 OBJDIR	= obj/
-OBJS	= $(SRCS:%.c=$(OBJDIR)%.o)
+OBJS	= $(addprefix $(OBJDIR),$(SRCS:.cpp=.o)) 
 
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
@@ -33,7 +33,7 @@ all:	$(OBJDIR) $(NAME)
 $(OBJDIR):
 		mkdir -p obj
 
-$(OBJDIR)%.o: %.c
+$(OBJDIR)%.o: %.cpp
 		$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
