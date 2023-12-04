@@ -10,3 +10,157 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Fixed.hpp"
+
+Fixed::Fixed(void)
+{
+	std::cout << "Default constructor called" << "\n";
+	_fpn = 0;
+}
+
+Fixed::Fixed(int const i)
+{
+	std::cout << "Int Constructor called" << "\n";
+}
+
+Fixed::Fixed(float const f)
+{
+	std::cout << "Float Constructor called" << "\n";
+}
+
+Fixed::Fixed(const Fixed&)
+{
+	std::cout << "Copy constructor called" << "\n";
+}
+
+Fixed& Fixed::operator=(const Fixed& x)
+{
+	std::cout << "Copy assignment operator called" << "\n";
+	Fixed y = x;
+	return (*this);
+}
+
+bool	operator>(const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+bool	operator>=(const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+bool	operator<(const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+bool	operator<=(const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+bool	operator==(const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+bool	operator!=(const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+Fixed	operator+( const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+Fixed	operator-( const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+Fixed	operator*( const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+Fixed	operator/( const Fixed& x, const Fixed& y)
+{
+	;
+}
+
+Fixed&	operator++( Fixed& x)
+{
+	;
+}
+
+Fixed&	operator--( Fixed& x)
+{
+	;
+}
+
+Fixed	operator++( Fixed& x, int e)
+{
+	;
+}
+
+Fixed	operator--( Fixed& x, int e)
+{
+	;
+}
+
+Fixed::~Fixed(void)
+{
+	std::cout << "Destructor called" << "\n";
+}
+
+int		Fixed::getRawBits(void) const
+{
+	std::cout << "getRawBits member function called " << "\n";
+	std::cout << _fpn << "\n";
+}
+
+void	Fixed::setRawBits(int const raw)
+{
+	if (_bits < raw)
+	{
+		std::cerr << "Out of bits\n";
+		std::exit(1);
+	}
+}
+
+float	Fixed::toFloat( void ) const
+{
+	;
+}
+
+int		Fixed::toInt( void ) const
+{
+	;
+}
+
+int		Fixed::min( Fixed&, Fixed& )
+{
+	;
+}
+
+int&	Fixed::min( const Fixed&, const Fixed& )
+{
+	;
+}
+
+int		Fixed::max( Fixed&, Fixed& )
+{
+	;
+}
+
+int&	Fixed::max( const Fixed&, const Fixed& )
+{
+	;
+}
+
+std::ostream& operator<<( std::ostream& os, const Fixed& f)
+{
+	return os << f.getRawBits();
+}
