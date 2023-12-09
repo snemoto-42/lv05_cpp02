@@ -21,93 +21,113 @@ Fixed::Fixed(void)
 Fixed::Fixed(int const i)
 {
 	std::cout << "Int Constructor called" << "\n";
+	_fpn = i;
 }
 
 Fixed::Fixed(float const f)
 {
 	std::cout << "Float Constructor called" << "\n";
+	_fpn = (f * (1 << _bits));
 }
 
 Fixed::Fixed(const Fixed&)
 {
 	std::cout << "Copy constructor called" << "\n";
+	_fpn = 0;
+	_fpn = getRawBits();
 }
 
-Fixed& Fixed::operator=(const Fixed& x)
+Fixed& Fixed::operator=(const Fixed&)
 {
 	std::cout << "Copy assignment operator called" << "\n";
-	Fixed y = x;
+	_fpn = 0;
+	_fpn = getRawBits();
 	return (*this);
 }
 
-bool	operator>(const Fixed& x, const Fixed& y)
+bool	Fixed::operator>(const Fixed& x) const
 {
-	;
+	return (_fpn > x._fpn);
 }
 
-bool	operator>=(const Fixed& x, const Fixed& y)
+bool	Fixed::operator>=(const Fixed& x) const
 {
-	;
+	return (_fpn >= x._fpn);
 }
 
-bool	operator<(const Fixed& x, const Fixed& y)
+bool	Fixed::operator<(const Fixed& x) const
 {
-	;
+	return (_fpn < x._fpn);
 }
 
-bool	operator<=(const Fixed& x, const Fixed& y)
+bool	Fixed::operator<=(const Fixed& x) const
 {
-	;
+	return (_fpn <= x._fpn);
 }
 
-bool	operator==(const Fixed& x, const Fixed& y)
+bool	Fixed::operator==(const Fixed& x) const
 {
-	;
+	return (_fpn == x._fpn);
 }
 
-bool	operator!=(const Fixed& x, const Fixed& y)
+bool	Fixed::operator!=(const Fixed& x) const
 {
-	;
+	return (_fpn != x._fpn);
 }
 
-Fixed	operator+( const Fixed& x, const Fixed& y)
+Fixed	Fixed::operator+(const Fixed& x)
 {
-	;
+	_fpn += x._fpn;
+	return (*this);
 }
 
-Fixed	operator-( const Fixed& x, const Fixed& y)
+Fixed	Fixed::operator-(const Fixed& x)
 {
-	;
+	_fpn -= x._fpn;
+	return (*this);
 }
 
-Fixed	operator*( const Fixed& x, const Fixed& y)
+Fixed	Fixed::operator*(const Fixed& x)
 {
-	;
+	_fpn *= x._fpn;
+	return (*this);
 }
 
-Fixed	operator/( const Fixed& x, const Fixed& y)
+Fixed	Fixed::operator/(const Fixed& x)
 {
-	;
+	if (x._fpn == 0)
+	{
+		std::cerr << "Devide by zero\n";
+		std::exit(1);
+	}
+	_fpn /= x._fpn;
+	return (*this);
 }
 
-Fixed&	operator++( Fixed& x)
+Fixed&	Fixed::operator++(void)	//++f
 {
-	;
+	int	e = 1;
+	_fpn += e;
+	return (*this);
 }
 
-Fixed&	operator--( Fixed& x)
+Fixed&	Fixed::operator--(void)	//--f
 {
-	;
+	int	e = 1;
+	_fpn -= e;
+	return (*this);
 }
 
-Fixed	operator++( Fixed& x, int e)
+Fixed	Fixed::operator++(int e)	//f++
 {
-	;
+	_fpn -= e;
+	return (*this);
 }
 
-Fixed	operator--( Fixed& x, int e)
+Fixed	Fixed::operator--(int e)	//f--
 {
-	;
+	_fpn -= e;
+	return (*this);
 }
 
 Fixed::~Fixed(void)
@@ -130,34 +150,46 @@ void	Fixed::setRawBits(int const raw)
 	}
 }
 
-float	Fixed::toFloat( void ) const
+float	Fixed::toFloat(void) const
 {
-	;
+	return (_fpn * (1 << _bits));
 }
 
-int		Fixed::toInt( void ) const
+int		Fixed::toInt(void) const
 {
-	;
+	return (_fpn / (1 << _bits));
 }
 
-int		Fixed::min( Fixed&, Fixed& )
+int		Fixed::min(Fixed& x, Fixed& y)
 {
-	;
+	if (x > y)
+		return (y._fpn);
+	else
+		return (x._fpn);
 }
 
-int&	Fixed::min( const Fixed&, const Fixed& )
+const int&	Fixed::min(const int& x, const int& y)
 {
-	;
+	if (x > y)
+		return (y);
+	else
+		return (x);
 }
 
-int		Fixed::max( Fixed&, Fixed& )
+int		Fixed::max(Fixed& x, Fixed& y)
 {
-	;
+	if (x > y)
+		return (x._fpn);
+	else
+		return (y._fpn);
 }
 
-int&	Fixed::max( const Fixed&, const Fixed& )
+const int&	Fixed::max(const int& x, const int& y)
 {
-	;
+	if (x > y)
+		return (x);
+	else
+		return (y);
 }
 
 std::ostream& operator<<( std::ostream& os, const Fixed& f)

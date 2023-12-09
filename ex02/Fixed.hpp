@@ -15,6 +15,7 @@
 #define __FIXED_HPP__
 
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
@@ -35,15 +36,15 @@ class Fixed
 		bool	operator==( const Fixed& ) const;
 		bool	operator!=( const Fixed& ) const;
 	
-		Fixed	operator+( const Fixed& ) const;
-		Fixed	operator-( const Fixed& ) const;
-		Fixed	operator*( const Fixed& ) const;
-		Fixed	operator/( const Fixed& ) const;
+		Fixed	operator+( const Fixed& );
+		Fixed	operator-( const Fixed& );
+		Fixed	operator*( const Fixed& );
+		Fixed	operator/( const Fixed& );
 
-		Fixed&	operator++( void );
-		Fixed&	operator--( void );
-		Fixed	operator++( int );
-		Fixed	operator--( int );
+		Fixed&	operator++( void );	//++f
+		Fixed&	operator--( void );	//--f
+		Fixed	operator++( int );	//f++
+		Fixed	operator--( int );	//f--
 	
 		int			getRawBits( void ) const;
 		void		setRawBits( int const raw );
@@ -51,11 +52,11 @@ class Fixed
 		float		toFloat( void ) const;
 		int			toInt( void ) const;
 
-		static int	min( Fixed&, Fixed& );
-		static int&	min( const Fixed&, const Fixed& );
+		static int			min( Fixed&, Fixed& );
+		static const int&	min( const int&, const int& );
 
-		static int	max( Fixed&, Fixed& );
-		static int&	max( const Fixed&, const Fixed& );
+		static int			max( Fixed&, Fixed& );
+		static const int&	max( const int&, const int& );
 
 	private:
 		int					_fpn;

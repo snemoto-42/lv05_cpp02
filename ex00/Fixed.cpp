@@ -41,12 +41,12 @@ Fixed::~Fixed(void)
 int		Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << "\n";
-	return (_fpn >> _bits);
+	return (_fpn / (1 << _bits));
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	if ((2 >> _bits) < raw)
+	if ((1 << _bits) < raw)
 	{
 		std::cerr << "Out of bits\n";
 		std::exit(1);
