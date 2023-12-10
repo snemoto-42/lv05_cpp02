@@ -36,10 +36,10 @@ class Fixed
 		bool	operator==( const Fixed& ) const;
 		bool	operator!=( const Fixed& ) const;
 	
-		Fixed	operator+( const Fixed& );
-		Fixed	operator-( const Fixed& );
-		Fixed	operator*( const Fixed& );
-		Fixed	operator/( const Fixed& );
+		Fixed	operator+( const Fixed& ) const;
+		Fixed	operator-( const Fixed& ) const;
+		Fixed	operator*( const Fixed& ) const;
+		Fixed	operator/( const Fixed& ) const;
 
 		Fixed&	operator++( void );	//++f
 		Fixed&	operator--( void );	//--f
@@ -52,11 +52,11 @@ class Fixed
 		float		toFloat( void ) const;
 		int			toInt( void ) const;
 
-		static int			min( Fixed&, Fixed& );
-		static const int&	min( const int&, const int& );
+		static const Fixed&		min( Fixed& , Fixed& );
+		static const Fixed&		min(const Fixed& , const Fixed& );
 
-		static int			max( Fixed&, Fixed& );
-		static const int&	max( const int&, const int& );
+		static const Fixed&		max(Fixed& , Fixed& );
+		static const Fixed&		max(const Fixed& , const Fixed& );
 
 	private:
 		int					_fpn;

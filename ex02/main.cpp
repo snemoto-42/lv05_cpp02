@@ -27,5 +27,55 @@ int main( void )
 
 	std::cout << Fixed::max( a, b ) << std::endl;
 
+	std::cout << "------my test for > < >= <= == != ------\n";
+
+	Fixed		c(1);
+	Fixed		d(2);
+	Fixed		e(c);
+
+	std::cout << "> : " << (c > e) << std::endl;
+	std::cout << "> : " << (d > e) << std::endl;
+
+	std::cout << "< : " << (c < e) << std::endl;
+	std::cout << "< : " << (d < e) << std::endl;
+
+	std::cout << ">= : " << (c >= e) << std::endl;
+	std::cout << ">= : " << (d >= e) << std::endl;
+
+	std::cout << "<= : " << (c <= e) << std::endl;
+	std::cout << "<= : " << (d <= e) << std::endl;
+
+	std::cout << "== : " << (c == e) << std::endl;
+	std::cout << "== : " << (d == e) << std::endl;
+
+	std::cout << "!= : " << (c != e) << std::endl;
+	std::cout << "!= : " << (d != e) << std::endl;
+
+	std::cout << "------my test for + - * / ------\n";
+
+	std::cout << "+ : " << (c + e) << std::endl;
+	std::cout << "+ : " << (d + e) << std::endl;
+
+	std::cout << "- : " << (c - e) << std::endl;
+	std::cout << "- : " << (d - e) << std::endl;
+
+	std::cout << "* : " << (c * e) << std::endl;
+	std::cout << "* : " << (d * e) << std::endl;
+
+	std::cout << "/ : " << (c / e) << std::endl;
+	std::cout << "/ : " << (d / e) << std::endl;
+
+	std::cout << "------my test for ++ -- ------\n";
+
+	std::cout << d << std::endl;
+	std::cout << ++d << std::endl;
+	std::cout << d << std::endl;
+	std::cout << --d << std::endl;
+	std::cout << d << std::endl;
+	std::cout << d++ << std::endl;
+	std::cout << d << std::endl;
+	std::cout << d-- << std::endl;
+	std::cout << d << std::endl;
+
 	return 0;
 }

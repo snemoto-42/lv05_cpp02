@@ -18,30 +18,17 @@ Fixed::Fixed(void)
 	_fpn = 0;
 }
 
-Fixed::Fixed(int const i)
-{
-	std::cout << "Int Constructor called" << "\n";
-	_fpn = i;
-}
-
-Fixed::Fixed(float const f)
-{
-	std::cout << "Float Constructor called" << "\n";
-	_fpn = (f * (1 << _bits));
-}
-
-Fixed::Fixed(const Fixed&)
+Fixed::Fixed(const Fixed& x)
 {
 	std::cout << "Copy constructor called" << "\n";
-	_fpn = 0;
-	_fpn = getRawBits();
+	*this = x;
 }
 
-Fixed& Fixed::operator=(const Fixed&)
+Fixed& Fixed::operator=(const Fixed& f)
 {
 	std::cout << "Copy assignment operator called" << "\n";
-	_fpn = 0;
-	_fpn = getRawBits();
+	if (this != &f)
+		this->_fpn = f.getRawBits();
 	return (*this);
 }
 
@@ -53,30 +40,37 @@ Fixed::~Fixed(void)
 int		Fixed::getRawBits(void) const
 {
 	// std::cout << "getRawBits member function called" << "\n";
-	return (_fpn / (1 << _bits));
+	return (_fpn);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	if ((1 << _bits) < raw)
-	{
-		std::cerr << "Out of bits\n";
-		std::exit(1);
-	}
 	_fpn = raw;
+}
+
+Fixed::Fixed(int const i)
+{
+	std::cout << "Int Constructor called" << "\n";
+	_fpn = (i << _bits);
+}
+
+Fixed::Fixed(float const f)
+{
+	std::cout << "Float Constructor called" << "\n";
+	_fpn = roundf((f * (1 << _bits)));
 }
 
 float	Fixed::toFloat(void) const
 {
-	return (_fpn * (1 << _bits));
+	return (static_cast<float>(getRawBits()) / (1 << _bits));
 }
 
 int		Fixed::toInt(void) const
 {
-	return (_fpn / (1 << _bits));
+	return (_fpn >> _bits);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& f)
 {
-	return os << f.getRawBits();
+	return os << f.toFloat();
 }
