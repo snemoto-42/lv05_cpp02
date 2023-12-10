@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.h                                            :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snemoto <snemoto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:48:30 by snemoto           #+#    #+#             */
-/*   Updated: 2023/10/15 17:04:25 by snemoto          ###   ########.fr       */
+/*   Updated: 2023/12/10 13:12:58 by snemoto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Fixed
 		Fixed( float const );
 		Fixed( const Fixed& );
 
-		Fixed&	operator=(const Fixed& );
+		Fixed&	operator=( const Fixed& );
 
 		~Fixed( void );
 
@@ -47,16 +47,16 @@ class Fixed
 		Fixed	operator--( int );	//f--
 	
 		int			getRawBits( void ) const;
-		void		setRawBits( int const raw );
+		void		setRawBits( int const );
 
 		float		toFloat( void ) const;
 		int			toInt( void ) const;
 
 		static const Fixed&		min( Fixed& , Fixed& );
-		static const Fixed&		min(const Fixed& , const Fixed& );
+		static const Fixed&		min( const Fixed& , const Fixed& );
 
-		static const Fixed&		max(Fixed& , Fixed& );
-		static const Fixed&		max(const Fixed& , const Fixed& );
+		static const Fixed&		max( Fixed& , Fixed& );
+		static const Fixed&		max( const Fixed& , const Fixed& );
 
 	private:
 		int					_fpn;
